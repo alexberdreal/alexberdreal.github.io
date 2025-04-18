@@ -12,6 +12,5 @@ The reason of the following text is to finally figure out how all these things w
 
 General view of the process
 
-<img src="general_view.jpg"> 
-
+<img src="3d-rendering/general_view.jpg"> 
 
