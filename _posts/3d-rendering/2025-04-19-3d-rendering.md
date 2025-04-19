@@ -14,3 +14,31 @@ General view of the process
 
 <img src="3d-rendering/general_view.jpg"> 
 
+So as you may see, there is 5 spaces in which an object may exist:
+- 1. Local space - in its own coordinate system.
+- 2. World space - in the world coordinate system.
+- 3. View space - in the camera's coordinate system. 
+- 4. Clip space - TODO 
+- 5. Screen space - TODO
+
+There is nothing really interesting to say about the first 2 spaces, 
+let's just skip it.
+
+The fun begins from the 3rd one. What is the view space? 
+
+Let's say we have a camera just wandering around in the world space. The camera's coordinate system forms the view space. 
+
+What parameters does the camera have? 
+- Position in the world space 
+- Direction 
+- Up vector 
+
+Position \\(\vec{P}) is a vector starting from a world space origin and pointing to a camera position.
+
+Direction \\(\vec{D}) is a vector starting from a camera position and pointing to a certain point in the world space.
+
+Up vector \\(\vec{U}) is a vector pointing up relatively to the camera. It is not supposed to be always perpendicular to \\(\vec{D}) and is always adjusted (gonna text about it later).
+
+The first thing that should be done is a calculation of basis vectors from a view space coordinate system. 
+
+Let's say \\(\vec{f}) (front), \\(\vec{r}) (right), \\(\vec{u}) (true up) are basis vectors of this system. The first thing we should do is calculate \\(vec{r}) the \\(\vec{r})
