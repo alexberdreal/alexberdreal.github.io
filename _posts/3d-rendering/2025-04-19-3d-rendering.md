@@ -33,12 +33,12 @@ What parameters does the camera have?
 - Direction 
 - Up vector 
 
-Position \\(\vec{P}) is a vector starting from a world space origin and pointing to a camera position.
+Position \\(\vec{P}\\) is a vector starting from a world space origin and pointing to a camera position.
 
-Direction \\(\vec{D}) is a vector starting from a camera position and pointing to a certain point in the world space.
+Direction \\(\vec{D}\\) is a vector starting from a camera position and pointing to a certain point in the world space.
 
-Up vector \\(\vec{U}) is a vector pointing up relatively to the camera. It is not supposed to be always perpendicular to \\(\vec{D}) and is always adjusted (gonna text about it later).
+Up vector \\(\vec{U}\\) is a vector pointing up relatively to the camera. It is not supposed to be always perpendicular to \\(\vec{D}\\) and is always adjusted (gonna text about it later).
 
 The first thing that should be done is a calculation of basis vectors from a view space coordinate system. 
 
-Let's say \\(\vec{f}) (front), \\(\vec{r}) (right), \\(\vec{u}) (true up) are basis vectors of this system. The first thing we should do is calculate \\(vec{r}) the \\(\vec{r})
+Let's say \\(\vec{f}\\) (front), \\(\vec{r}\\) (right), \\(\vec{u}\\) (true up) are basis vectors of this system. The first thing we should do is calculate \\(vec{r}\\) the \\(\vec{r}\\)
