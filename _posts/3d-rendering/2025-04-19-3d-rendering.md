@@ -1,44 +1,52 @@
----
-layout: post
-title: 3D world rendering
-date: 2025-04-19
-categories: jekyll update
-usemathjax: true
----
-
-There's a pipeline which is usually applied to every object before it's got on a user screen.
-It is not that straigtforward as it could be, but after realizing how it is deduced, it's getting much easier.
-The reason of the following text is to finally figure out how all these things work under the hood. 
+There's a pipeline that is usually applied to every object before it appears on a user's screen.
+It is not as straightforward as it might seem, but after understanding how it is derived, it becomes much easier.
+The purpose of the following text is to finally figure out how all these things work under the hood.
 
 General view of the process
+<img src="3d-rendering/general_view.jpg">
+As you can see, there are 5 spaces in which an object may exist:
 
-<img src="3d-rendering/general_view.jpg"> 
+Local space — in its own coordinate system.
 
-So as you may see, there is 5 spaces in which an object may exist:
-- 1. Local space - in its own coordinate system.
-- 2. World space - in the world coordinate system.
-- 3. View space - in the camera's coordinate system. 
-- 4. Clip space - TODO 
-- 5. Screen space - TODO
+World space — in the world coordinate system.
 
-There is nothing really interesting to say about the first 2 spaces, 
-let's just skip it.
+View space — in the camera's coordinate system.
 
-The fun begins from the 3rd one. What is the view space? 
+Clip space — TODO
 
-Let's say we have a camera just wandering around in the world space. The camera's coordinate system forms the view space. 
+Screen space — TODO
 
-What parameters does the camera have? 
-- Position in the world space 
-- Direction 
-- Up vector 
+There is nothing particularly interesting to say about the first two spaces,
+so let's just skip them.
 
-Position \\(\vec{P}\\) is a vector starting from a world space origin and pointing to a camera position.
+The fun begins with the third one. What is the view space?
 
-Direction \\(\vec{D}\\) is a vector starting from a camera position and pointing to a certain point in the world space.
+Let's say we have a camera wandering around in world space. The camera's coordinate system forms the view space.
 
-Up vector \\(\vec{U}\\) is a vector pointing up relatively to the camera. It is not supposed to be always perpendicular to \\(\vec{D}\\) and is always adjusted (gonna text about it later).
+What parameters does the camera have?
 
-The first thing that should be done is a calculation of basis vectors from a view space coordinate system. 
+Position in world space
 
-Let's say \\(\vec{f}\\) (front), \\(\vec{r}\\) (right), \\(\vec{u}\\) (true up) are basis vectors of this system. The first thing we should do is calculate \\(vec{r}\\) the \\(\vec{r}\\)
+Direction
+
+Up vector
+
+Position $$\vec{P}$$ is a vector starting from the world space origin and pointing to the camera position.
+
+Direction $$\vec{D}$$ is a vector starting from the camera position and pointing to a certain point in world space (already normalized for convenience).
+
+Up vector $$\vec{U}$$ is a vector pointing upward relative to the camera. It is not necessarily perpendicular to $$\vec{D}$$ and is always adjusted (we will discuss this later).
+
+The first thing to do is calculate the basis vectors of the view space coordinate system.
+
+Let's say $$\vec{f}$$ (front), $$\vec{r}$$ (right), and $$\vec{u}$$ (true up) are the basis vectors of this system. The first step is to calculate $$\vec{r}$$:
+$$
+\vec{r} = \vec{D} \times \vec{U}
+$$
+
+The second step is to get the true (adjusted) up vector:
+$$
+\vec{u} = \frac{\vec{D} \times \vec{r}}{|\vec{D} \times \vec{r}|}
+$$
+
+Now we have a basis coordinate system.
